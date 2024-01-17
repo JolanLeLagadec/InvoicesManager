@@ -3,6 +3,7 @@ import './globals.css'
 import Sidebar from '@/components/layout/Sidebar'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/theme-provider'
+import Form from './_components/Form'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,8 @@ export default function RootLayout({ children }) {
           <body className={inter.className}>
             <main className='flex flex-col min-h-screen md:flex-row'>
               <Sidebar />
-              <div className='flex-1 flex justify-center py-14'>
+              <div className='flex-1 flex justify-center relative'>
+                <Form />
                 {children}
               </div>
             </main>

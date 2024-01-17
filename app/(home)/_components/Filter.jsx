@@ -14,16 +14,15 @@ export default function Filter() {
         paid: false
     })
 
-
     return (
         <DropdownMenu
             onOpenChange={() => setIsOpen(!isOpen)}>
             <DropdownMenuTrigger
                 className='text-sm flex justify-center items-center gap-2 cursor-pointer outline-none'>
-                Filter by status {isOpen ?
+                <span className='text-sm flex justify-center items-center gap-2 cursor-pointer outline-none'><span className="hidden lg:block">Filter by status</span><span className="lg:hidden">Filter</span> {isOpen ?
                     <Image src={arrowDown} width={10} alt='' /> :
-                    <Image className="rotate-180" src={arrowDown} width={10} alt='' />
-                }
+                    <Image className="rotate-180 " src={arrowDown} width={10} alt='' />
+                }</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='-space-y-4 items-start flex flex-col'>
                 <DropdownMenuItem
