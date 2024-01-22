@@ -15,16 +15,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-
       <html lang="en">
         <ThemeProvider
           defaultTheme="light"
           attribute='class'
         >
-          <body className={inter.className}>
-            <main className='flex flex-col min-h-screen md:flex-row'>
-              <Sidebar />
-              <div className='flex-1 flex justify-center relative'>
+          <body className={`${inter.className} `}>
+            <main className='flex flex-col md:flex-row h-full bg-gray-100'>
+            <Sidebar />
+              <div className='flex-1 flex justify-center relative'> 
                 <Form />
                 {children}
               </div>

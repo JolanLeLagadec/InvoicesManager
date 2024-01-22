@@ -10,40 +10,38 @@ export default function Filter() {
     const [isOpen, setIsOpen] = useState(false)
     const [isChecked, setIsChecked] = useState({
         draft: false,
-        pending: false,
+        ending: false,
         paid: false
     })
+    const handleSelect = (status) => {
+        setIsChecked((prevChecked) => ({
+                ...isChecked,
+                [status]: !prevChecked[status]
+        }))
+    }
 
     return (
         <DropdownMenu
             onOpenChange={() => setIsOpen(!isOpen)}>
             <DropdownMenuTrigger
-                className='text-sm flex justify-center items-center gap-2 cursor-pointer outline-none'>
-                <span className='text-sm flex justify-center items-center gap-2 cursor-pointer outline-none'><span className="hidden lg:block">Filter by status</span><span className="lg:hidden">Filter</span> {isOpen ?
+                className='text-sm flex  items-center gap-2 cursor-pointer outline-none'>
+                <span className='text-sm flex  items-center gap-2 cursor-pointer outline-none'><span className="hidden lg:block">Filter by status</span><span className="lg:hidden">Filter</span> {isOpen ?
                     <Image src={arrowDown} width={10} alt='' /> :
                     <Image className="rotate-180 " src={arrowDown} width={10} alt='' />
                 }</span>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='-space-y-4 items-start flex flex-col'>
-                <DropdownMenuItem
-                    onSelect={(evt) => {
-                        evt.preventDefault()
-                        setIsChecked(!isChecked.draft)
-                    }}
-                    className='flex items-center gap-3 w-full'><Input checked={isChecked.draft} className='w-4' type='checkbox' />Draft</DropdownMenuItem>
-                <DropdownMenuItem
-                    onSelect={(evt) => {
-                        evt.preventDefault()
-                        setIsChecked(!isChecked.pending)
-                    }}
-                    className='flex items-center gap-3 w-full'><Input checked={isChecked.pending} className='w-4 bg-[#7C5DFA]' type='checkbox' />Pending</DropdownMenuItem>
-                <DropdownMenuItem
-                    onSelect={(evt) => {
-                        evt.preventDefault()
-                        setIsChecked(!isChecked.paid)
-
-                    }}
-                    className='flex items-center gap-3 w-full'><Input checked={isChecked.paid} className='w-4' type='checkbox' />Paid</DropdownMenuItem>
+                {
+                   Object.entries(isChecked).map(([status, value]) => (
+                        <DropdownMenuItem
+                            key={status}
+                            onSelect={(evt) => {
+                                evt.preventDefault()
+                                handleSelect(status)
+                            }}
+                            className='flex items-center gap-3 w-full'><Input checked={value} className='w-4' type='checkbox' />{status.charAt(0).toUpperCase() + status.slice(1)}</DropdownMenuItem>
+                ))
+                }
             </DropdownMenuContent>
         </DropdownMenu>
 
