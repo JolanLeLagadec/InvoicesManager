@@ -6,17 +6,39 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Invoice {
 
+  id             String @id @default(uuid())
+  address        String
+  city           String
+  postCode       String
+  country        String
+  clientName     String
+  clientEmail    String
+  clientAddress  String 
+  clientCity     String @default("")
+  clientPostCode String @default("")
+  clientCountry  String @default("")
+  terms          String
+  date           String
+  description    String
+  statut         String @default("Pending")
 
+  items Items[]
+  
 }
 
+model Items {
+  id    String @id @default(uuid())
+  name  String
+  qty   Int
+  price Int
 
-model  Items {
-
-
+  Invoice   Invoice? @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  invoiceId String?
 }

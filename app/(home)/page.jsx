@@ -2,9 +2,12 @@
 import Filter from '@/app/(home)/_components/Filter'
 import InvoiceItem from './_components/InvoiceItem'
 import NewInvoiceButton from './_components/NewInvoiceButton'
+import { getInvoices } from './_actions/getInvoices'
 
-export default function Home() {
+export default async function Home() {
 
+
+  const invoices = await getInvoices()
 
   return (
 
@@ -21,8 +24,15 @@ export default function Home() {
         </div>
       </div>
       <div className='mt-16 space-y-4'>
-        <InvoiceItem />
-        <InvoiceItem />
+        {
+          invoices.map((inv) => (
+            <>
+            <InvoiceItem key={inv.id} data={inv} />
+            </>
+          ))
+        }
+        
+        
       </div>
     </div>
 

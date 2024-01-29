@@ -1,10 +1,9 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import arrowDown from "@/starter-code/assets/icon-arrow-down.svg"
 
-export default function Terms() {
+export default function Terms({ setTerm }) {
     
     const [isOpen, setIsOpen] = useState(false)
     const terms = [
@@ -34,6 +33,7 @@ export default function Terms() {
                             key={term}
                             onSelect={() => {
                                 setSelected(term)
+                                setTerm(term)
                             }}
                             className='flex items-cenetr justify-start gap-3 w-full'>{term}</DropdownMenuItem>
                 ))

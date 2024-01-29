@@ -10,7 +10,7 @@ export default function NewInvoiceButton() {
     const form = useForm()
 
     const handleClick = () => {
-            form.onOpen()
+            form.onOpen('Add')
     }
   return (
     <>

@@ -8,13 +8,16 @@ export default function Item({ data, setItems, index, deleteItem }) {
 
     const total = data.price > 0 && data.quantity > 0 ? data.price * data.quantity : 0
 
+    
+
     const handleChangeValue = (e) => {
         const { name, value } = e.target
+        const numericValue = value.trim() === '' ? value : isNaN(value) ? value : parseInt(value, 10)
         setItems((prevItems) => {
         const newItems = [...prevItems]
         newItems[index] = {
             ...prevItems[index],
-            [name]: value
+            [name]: numericValue
         }
         return newItems
     })}
@@ -28,8 +31,8 @@ export default function Item({ data, setItems, index, deleteItem }) {
                 onChange={handleChangeValue}
                 className='col-span-4 dark:bg-slate-800 rounded-lg' />
             <Input
-                name="quantity"
-                value={data.quantity}
+                name="qty"
+                value={data.qty}
                 onChange={handleChangeValue}
                 className='col-span-2  dark:bg-slate-800 rounded-lg' />
             <Input

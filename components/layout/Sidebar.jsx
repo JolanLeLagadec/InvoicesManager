@@ -9,7 +9,7 @@ export default function Sidebar() {
 
 
   return (
-    <div className='bg-slate-800 w-full md:w-[8rem] rounded-none md:rounded-tr-3xl md:h-screen'>
+    <div className='bg-slate-800 w-full md:w-[8rem] rounded-none md:rounded-tr-3xl md:h-screen '>
       <div className='flex md:flex-col md:w-full justify-between items-center rounded-tr-2xl h-full'>
         <div className='flex items-center justify-center rounded-r-3xl relative bg-[#7C5DFA] w-[6rem] md:w-full p-4'>
           <Image

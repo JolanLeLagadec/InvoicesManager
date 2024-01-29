@@ -4,6 +4,9 @@ import Sidebar from '@/components/layout/Sidebar'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/theme-provider'
 import Form from './_components/Form'
+import AddInvoice from './_components/AddInvoice'
+import EditInvoice from './_components/EditInvoice'
+import DeleteModale from './[id]/_components/DeleteModale'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,10 +24,12 @@ export default function RootLayout({ children }) {
           attribute='class'
         >
           <body className={`${inter.className} `}>
-            <main className='flex flex-col md:flex-row h-full bg-gray-100'>
+            <main className='flex flex-col md:flex-row min-h-screen bg-gray-100'>
+            <DeleteModale />
             <Sidebar />
               <div className='flex-1 flex justify-center relative'> 
-                <Form />
+                <AddInvoice />
+                <EditInvoice />
                 {children}
               </div>
             </main>
